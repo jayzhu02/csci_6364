@@ -102,7 +102,7 @@ def predict_from_csv(model_path, file, num_steps, day_pred, device=None):
     #     x = (x - model.mean) / model.std
     #     pred_y = predict(model, x, day_pred, device)
     #     break
-    plot_predict_data(y, pred_y[:, -day_pred:, :], 'LSTM_predict_data')
+    plot_predict_data(y, pred_y[:, -day_pred:, :], 'GRU_predict_data_2')
     return y, pred_y[:, -day_pred:, :]
 
 
@@ -112,12 +112,12 @@ def main(mode="train"):
     day_to_pred = 7
 
     if mode == "train":
-        data_loader = ETHDataLoader('./data/ETH_USD-3_year.csv', batch_size=batch_size, num_steps=num_steps)
+        data_loader = ETHDataLoader('./data/ETH_Train.csv', batch_size=batch_size, num_steps=num_steps)
         # model = LSTM(input_size=5, hidden_size=256, output_size=5)
         model = GRU(input_size=5, hidden_size=128, output_size=5)
         train(data_loader, model, epochs=1000)
     else:
-        res, pred_data = predict_from_csv('./checkpoints/LSTM-epoch-900-0.008.pth', './data/ETH_USD-1_year.csv',
+        res, pred_data = predict_from_csv('./checkpoints/GRU-epoch-900-0.004.pth', './data/ETH_Test.csv',
                                           num_steps, day_to_pred)
 
 

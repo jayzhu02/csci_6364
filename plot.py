@@ -11,7 +11,7 @@ def plot_history_data(file):
     plt.xlabel('Date')
     plt.ylabel('Highest Price')
     plt.plot(time, high)
-    plt.savefig('./img/history_data.jpg')
+    plt.savefig('./img/history_data_2.jpg')
 
     plt.show()
 
@@ -32,4 +32,4 @@ def plot_predict_data(y, pred_y, file_name):
     plt.show()
 
 
-# plot_history_data('./data/ETH_USD-3_year.csv')
+# plot_history_data('./data/ETH_Train.csv')
